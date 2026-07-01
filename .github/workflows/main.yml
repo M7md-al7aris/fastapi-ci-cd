@@ -1,0 +1,27 @@
+name: FastAPI CI/CD Application
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup python 
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+      
+      - name: install dependencies
+        run: |
+          make install
+      
+      - name: lint 
+        run: |
+          make lint
+
+      - name: format
+        run: |
+          make format
+
+      - name: test
+        run: |
+          make test   
